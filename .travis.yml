@@ -1,0 +1,8 @@
+sudo: false
+language: node_js
+node_js:
+    - "5.1"
+    - "6"
+    - "stable"
+after_script:
+    - npm run coveralls
