@@ -2,7 +2,7 @@
   "name": "parsey",
   "version": "0.0.0",
   "description": "Parser for context-free grammars",
-  "main": "parser.js",
+  "main": "parsey.js",
   "scripts": {
     "lint": "eslint . --ignore-pattern coverage",
     "test": "jasmine",

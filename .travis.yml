@@ -4,7 +4,11 @@ node_js:
     - "5.1"
     - "6"
     - "stable"
+
+script:
+    - npm run lint
 after_script:
     - npm run coveralls
+
 notifications:
     email: false
