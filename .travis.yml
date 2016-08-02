@@ -6,3 +6,5 @@ node_js:
     - "stable"
 after_script:
     - npm run coveralls
+notifications:
+    email: false
