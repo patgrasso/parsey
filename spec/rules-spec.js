@@ -1,4 +1,5 @@
 /*global describe, it, expect, beforeAll*/
+'use strict';
 
 const Sym   = require('../lib/rules').Sym;
 const Rule  = require('../lib/rules').Rule;
