@@ -5,6 +5,10 @@ node_js:
     - "6"
     - "stable"
 
+install:
+    - npm install eslint -g
+    - npm install
+
 script:
     - npm run lint
 after_script:
