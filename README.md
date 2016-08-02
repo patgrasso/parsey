@@ -1,5 +1,5 @@
 
-# parsey [![Build Status][travis-image]][travis-url] [![Coveralls Status][coveralls-image]][coveralls-url]
+# parsey [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url]
 
 Parsey is a parser for context-free grammars. It utilizes
 [earley parsing](https://www.wikiwand.com/en/Earley_parser), a top-down chart
@@ -135,6 +135,6 @@ MIT
 
 [travis-image]: https://travis-ci.org/patgrasso/parsey.svg?branch=master
 [travis-url]: https://travis-ci.org/patgrasso/parsey
-[coveralls-image]: https://coveralls.io/repos/patgrasso/parsey/badge.svg?branch=master&service=github
+[coveralls-image]: https://coveralls.io/repos/github/patgrasso/parsey/badge.svg?branch=master
 [coveralls-url]: https://coveralls.io/github/patgrasso/parsey?branch=master
 

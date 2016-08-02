@@ -4,7 +4,10 @@
   "description": "Parser for context-free grammars",
   "main": "parser.js",
   "scripts": {
-    "test": "jasmine"
+    "lint": "eslint . --ignore-pattern coverage",
+    "test": "jasmine",
+    "coverage": "istanbul cover --include-all-sources -x **/spec/** jasmine",
+    "coveralls": "istanbul cover --include-all-sources -x **/spec/** jasmine --captureExceptions && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "repository": {
     "type": "git",
@@ -22,5 +25,10 @@
   "bugs": {
     "url": "https://github.com/patgrasso/parsey/issues"
   },
-  "homepage": "https://github.com/patgrasso/parsey#readme"
+  "homepage": "https://github.com/patgrasso/parsey#readme",
+  "devDependencies": {
+    "coveralls": "^2.11.12",
+    "istanbul": "^0.4.4",
+    "jasmine": "^2.4.1"
+  }
 }
