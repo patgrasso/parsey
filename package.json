@@ -1,0 +1,26 @@
+{
+  "name": "parsey",
+  "version": "0.0.0",
+  "description": "Parser for context-free grammars",
+  "main": "parser.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/patgrasso/parsey.git"
+  },
+  "keywords": [
+    "parse",
+    "grammar",
+    "cfg",
+    "ast",
+    "earley"
+  ],
+  "author": "Pat Grasso",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/patgrasso/parsey/issues"
+  },
+  "homepage": "https://github.com/patgrasso/parsey#readme"
+}
