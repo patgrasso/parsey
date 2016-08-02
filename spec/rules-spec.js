@@ -1,4 +1,4 @@
-/*global describe, it, expect, beforeAll, fail*/
+/*global describe, it, expect, beforeAll*/
 
 const Sym   = require('../lib/rules').Sym;
 const Rule  = require('../lib/rules').Rule;
@@ -84,8 +84,6 @@ describe('Rule', () => {
     let filteredRhs = r.filter((item, index) => item === items[index]);
     expect(filteredRhs.length).toBe(3);
   });
-
-  it('force fail', () => fail());
 
 });
 
