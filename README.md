@@ -1,5 +1,8 @@
 
-# parsey [![Build Status][travis-image]][travis-url] [![Coverage Status][coveralls-image]][coveralls-url]
+# Parsey
+[![NPM Version][npm-image]][npm-url]
+[![Build Status][travis-image]][travis-url]
+[![Coverage Status][coveralls-image]][coveralls-url]
 
 Parsey is a parser for context-free grammars. It utilizes
 [earley parsing](https://www.wikiwand.com/en/Earley_parser), a top-down chart
@@ -12,17 +15,17 @@ arithmetic, to name a few.
 
 
 ## Installation
-Clone Nyota from github:
+Install from npm:
 ```
-git clone https://github.com/patgrasso/Nyota
+npm install parsey --save
 ```
 
 
 ## Usage
 ```javascript
-const Rule  = require('parsey/lib/rules').Rule;
-const Sym   = require('parsey/lib/rules').Sym;
-const parse = require('parsey/lib/parser').parse;
+const Rule  = require('parsey').Rule;
+const Sym   = require('parsey').Sym;
+const parse = require('parsey').parse;
 
 const sum = new Sym('sum');
 const prod = new Sym('prod');
@@ -58,7 +61,7 @@ in grammar rules, with a `name` attribute that describes the symbol (names need
 not be unique).
 
 ```javascript
-const Sym = require('parsey/lib/rules').Sym;
+const Sym = require('parsey').Sym;
 let sum = new Sym('sum');
 let prod = new Sym('prod');
 ```
@@ -68,7 +71,7 @@ consisting of a sole symbol, a right-hand side consisting of a list of symbols,
 and an optional evaluation function.
 
 ```javascript
-const Rule = require('parsey/lib/rules').Rule;
+const Rule = require('parsey').Rule;
 //                     lhs        rhs               valuator
 let sumRule = new Rule(sum, [sum, '+', prod], (x, _, y) => x + y);
 ```
@@ -88,14 +91,14 @@ indices and all of the methods on Array.prototype will apply to the rhs.
 Given a list of Rules, parsing becomes as simple as
 
 ```javascript
-const parse = require('parsey/lib/parser').parse;
+const parse = require('parsey').parse;
 parse('1 + 2 * 3', grammar);
 ```
 
 The `parse()` function returns a parse tree, which is a node of the following
 structure:
 
-```json
+```javascript
 {
   item: [Rule],
   children: [Array]
@@ -105,7 +108,7 @@ structure:
 Elements in children can be either nodes of the above structure, or strings.
 
 Example:
-```json
+```javascript
 // 1 * 2
 {
   item: <Rule 'prod' [prod, '*', factor]>,
@@ -133,6 +136,8 @@ all tests, simply run `npm test` in the project's root.
 MIT
 
 
+[npm-image]: https://img.shields.io/npm/v/parsey.svg?style=flat
+[npm-url]: https://www.npmjs.com/package/parsey
 [travis-image]: https://travis-ci.org/patgrasso/parsey.svg?branch=master
 [travis-url]: https://travis-ci.org/patgrasso/parsey
 [coveralls-image]: https://coveralls.io/repos/github/patgrasso/parsey/badge.svg?branch=master
