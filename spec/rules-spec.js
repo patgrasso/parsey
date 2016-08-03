@@ -53,6 +53,12 @@ describe('Rule', () => {
       expect(r.evaluate instanceof Function).toBe(true);
     });
 
+    it('accepts a single non-terminal on the RHS', () => {
+      r = new Rule(sum, [prod], (x) => x);
+      expect(r.lhs).toBe(sum);
+      expect(r).toContain(prod);
+    });
+
   });
 
   describe('evaluate()', () => {

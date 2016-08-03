@@ -16,7 +16,7 @@ function printTree(tree, level) {
     console.log(`${Array(level).join(' ')})`);
     return;
   }
-  return console.log(`${Array(level).join(' ')}${tree}`);
+  return console.log(`${Array(level).join(' ')}'${tree}'`);
 }
 
 
