@@ -3,6 +3,7 @@
 [![NPM Version][npm-image]][npm-url]
 [![Build Status][travis-image]][travis-url]
 [![Coverage Status][coveralls-image]][coveralls-url]
+[![Inline Docs][inch-ci-image]][inch-ci-url]
 
 Parsey is a parser for context-free grammars. It utilizes
 [earley parsing](https://www.wikiwand.com/en/Earley_parser), a top-down chart
@@ -92,7 +93,7 @@ The CFG is a glorified array, a container for your rules. It has some methods
 like `rule()` and `getSymbols()`, which can be handy for creating rules from
 strings.
 
-```javascsript
+```javascript
 const CFG = require('parsey').CFG;
 let grammar = new CFG();
 
@@ -157,7 +158,7 @@ Example:
 
 
 ## Examples
-Check out [examples](/patgrasso/parsey/tree/master/examples) to see parsey in
+Check out [examples](https://github.com/patgrasso/parsey/tree/master/examples) to see parsey in
 action for various use cases!
 
 
@@ -176,4 +177,6 @@ MIT
 [travis-url]: https://travis-ci.org/patgrasso/parsey
 [coveralls-image]: https://coveralls.io/repos/github/patgrasso/parsey/badge.svg?branch=master
 [coveralls-url]: https://coveralls.io/github/patgrasso/parsey?branch=master
+[inch-ci-image]: https://inch-ci.org/github/patgrasso/parsey.svg?branch=master
+[inch-ci-url]: https://inch-ci.org/github/patgrasso/parsey
 

@@ -7,7 +7,7 @@
     "lint": "eslint . --ignore-pattern coverage",
     "test": "jasmine",
     "coverage": "istanbul cover --include-all-sources -x **/spec/** -x **/examples/** jasmine",
-    "coveralls": "istanbul cover --include-all-sources -x **/spec/** jasmine --captureExceptions && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
+    "coveralls": "istanbul cover --include-all-sources -x **/spec/** -x **/examples/** jasmine --captureExceptions && cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js && rm -rf ./coverage"
   },
   "repository": {
     "type": "git",
