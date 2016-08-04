@@ -1,0 +1,56 @@
+#!/usr/local/bin/node
+/**
+ * Calculates the value of an arithmetic expression
+ */
+
+const parse   = require('../parsey').parse;
+const CFG     = require('./lib/parser').CFG;
+
+const sum     = new Sym('sum');
+const prod    = new Sym('prod');
+const factor  = new Sym('factor');
+const exp     = new Sym('exp');
+const group   = new Sym('group');
+
+let   gram    = new CFG();
+
+// sum
+gram.rule(Rule(sum    , [sum, '+', prod]      , (x, _, y) => x + y)),
+gram.rule(Rule(sum    , [sum, '-', prod]      , (x, _, y) => x - y)),
+gram.rule(Rule(sum    , [prod]                , (x) => x)),
+
+// product
+gram.rule(Rule(prod   , [prod, '*', exp]      , (x, _, y) => x * y)),
+gram.rule(Rule(prod   , [prod, '/', exp]      , (x, _, y) => x / y)),
+gram.rule(Rule(prod   , [exp, '*', prod]      , (x, _, y) => x * y)),
+gram.rule(Rule(prod   , [exp, '/', prod]      , (x, _, y) => x / y)),
+gram.rule(Rule(prod   , [factor, group]       , (x, y) => x * y)),
+gram.rule(Rule(prod   , [group, group]        , (x, y) => x * y)),
+gram.rule(Rule(prod   , [group, factor]       , (x, y) => x * y)),
+gram.rule(Rule(prod   , [group]               , (x) => x)),
+
+gram.rule(Rule(group  , ['(', sum, ')']       , (_, x) => x)),
+gram.rule(Rule(group  , [exp]                 , (x) => x)),
+
+// exponent
+gram.rule(Rule(exp    , [group, '^', group]   , (x, _, y) => Math.pow(x, y))),
+gram.rule(Rule(exp    , [factor]              , (x) => x)),
+
+// factor
+gram.rule(Rule(factor , [/\d+/]               , (n) => parseFloat(n)))
+
+
+function interpret(parseTree) {
+  if (typeof parseTree === 'string' || parseTree == null) {
+    return parseTree;
+  }
+
+  let values = parseTree.children
+    .map((tree) => interpret(tree))
+    .filter((value) => value != null);
+
+  return parseTree.item.evaluate(values);
+}
+
+console.log(interpret(parse(process.argv.slice(2).join(' '), rules)))
+
