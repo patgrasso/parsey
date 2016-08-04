@@ -23,13 +23,13 @@ npm install parsey --save
 
 ## Usage
 ```javascript
-const Rule  = require('parsey').Rule;
-const Sym   = require('parsey').Sym;
-const parse = require('parsey').parse;
+const Rule    = require('parsey').Rule;
+const Sym     = require('parsey').Sym;
+const parse   = require('parsey').parse;
 
-const sum = new Sym('sum');
-const prod = new Sym('prod');
-const factor = new Sym('factor');
+const sum     = new Sym('sum');
+const prod    = new Sym('prod');
+const factor  = new Sym('factor');
 
 // Rule( [lhs : Sym], [rhs : Array], [valuator : Function] )
 
@@ -87,6 +87,35 @@ The Rule class is extended from Array, so the rhs symbols correspond to a Rule's
 indices and all of the methods on Array.prototype will apply to the rhs.
 
 
+### The CFG
+The CFG is a glorified array, a container for your rules. It has some methods
+like `rule()` and `getSymbols()`, which can be handy for creating rules from
+strings.
+
+```javascsript
+const CFG = require('parsey').CFG;
+let grammar = new CFG();
+
+grammar.rule('S -> NP VP');
+grammar.rule('NP -> Det N');
+grammar.rule('VP -> V NP');
+
+grammar.rule('Det -> "the");
+grammar.rule('Det -> "a");
+
+grammar.rule('V -> /runs?/');
+grammar.rule('V -> "ran"');
+```
+
+`rule()` will try to find existing symbols in the grammar that have the same
+names as the ones that appear in a production string, and will create new Sym
+objects if a symbol could not be found.
+
+It will also treat string-looking symbols like `"the"` as terminal symbols and
+leave them as strings, and likewise will turn things like `/regex/` into RegExp
+objects, which are also terminals.
+
+
 ### Parsing
 Given a list of Rules, parsing becomes as simple as
 
@@ -125,6 +154,11 @@ Example:
   ]
 }
 ```
+
+
+## Examples
+Check out [examples](/patgrasso/parsey/tree/master/examples) to see parsey in
+action for various use cases!
 
 
 ## Testing
