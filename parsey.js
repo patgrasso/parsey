@@ -16,13 +16,18 @@ module.exports = {
   tokenize  : require('./lib/tokenizer'),
 
   /**
-   * @see module:lib/rules~Rule
+   * @see module:lib/rules.Rule
    */
   Rule      : require('./lib/rules').Rule,
 
   /**
-   * @see module:lib/rules~Sym
+   * @see module:lib/rules.Sym
    */
-  Sym       : require('./lib/rules').Sym
+  Sym       : require('./lib/rules').Sym,
+
+  /**
+   * @see module:lib/cfg
+   */
+  CFG       : require('./lib/cfg')
 };
 

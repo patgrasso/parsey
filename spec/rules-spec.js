@@ -59,6 +59,18 @@ describe('Rule', () => {
       expect(r).toContain(prod);
     });
 
+    it('initializes like a normal constructor even without `new`', () => {
+      r = Rule(sum, [sum, '+', prod, '(', ')']);
+      expect(r.lhs).toBe(sum);
+      expect(r[0]).toBe(sum);
+      expect(r[1]).toBe('+');
+      expect(r[2]).toBe(prod);
+      expect(r[3]).toBe('(');
+      expect(r[4]).toBe(')');
+      expect(r.length).toBe(5);
+      expect(r.__proto__).toBe(Rule.prototype);
+    });
+
   });
 
   describe('evaluate()', () => {
