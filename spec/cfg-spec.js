@@ -31,6 +31,24 @@ describe('CFG', () => {
       expect(cfg).toEqual(jasmine.arrayContaining(rules));
     });
 
+    it('accepts stringy rules in the optional array argument', () => {
+      let rules = [
+        'S -> NP VP',
+        'NP -> Det N',
+        'VP -> V NP'
+      ];
+      cfg = new CFG(rules);
+      expect(cfg).toContain(Rule(s, [np, vp]));
+      expect(cfg).toContain(Rule(np, [Sym('Det'), Sym('N')]));
+      expect(cfg).toContain(Rule(vp, [Sym('V'), np]));
+      expect(cfg).not.toContain(Rule(vp, [Sym('V'), vp]));
+    });
+
+    it('ignores non-array things passed in', () => {
+      cfg = new CFG('peanut butter');
+      expect(cfg.length).toBe(0);
+    });
+
     it('initializes fine with no rules provided', () => {
       cfg = new CFG();
       expect(cfg.length).toBe(0);
