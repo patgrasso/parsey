@@ -132,13 +132,18 @@ describe('CFG', () => {
       expect(r[0].source).toBe(/\d+/.source);
     });
 
-    // NOTE: the 'y' flag, or 'sticky' flag, is not supported in node v5. The
-    // ability to match this flag is retained, but it is not tested here (as it
-    // will break the build!)
+    // NOTE: the 'y' flag, or 'sticky' flag, is not supported in node v5.
+    // Also, RegExp objects in v5 don't have the 'flags' property.
     it('captures regex flags (g, i, m) on regex terminal symbols', () => {
       r = cfg.rule('factor -> /\\d+/mig');
       expect(r[0] instanceof RegExp).toBe(true);
-      expect(r[0].flags).toBe('gim');
+      if (r[0].flags !== undefined) {
+        expect(r[0].flags).toBe('gim');
+      } else {
+        expect(r[0].ignoreCase).toBe(true);
+        expect(r[0].multiline).toBe(true);
+        expect(r[0].global).toBe(true);
+      }
     });
 
   });
