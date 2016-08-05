@@ -146,6 +146,39 @@ describe('CFG', () => {
       }
     });
 
+    it('accepts a Sym, Sym[], and Function (args to Rule constructor) as args', () => {
+      r = cfg.rule(s, [np, vp], (hello) => hello + ' world');
+      expect(cfg.length).toBe(1);
+      expect(cfg[0]).toBe(r);
+      expect(r.lhs).toBe(s);
+      expect(r).toEqual(jasmine.arrayContaining([np, vp]));
+      expect(r.evaluate(['hello'])).toBe('hello world');
+    });
+
+    it('accepts a stringy rule ("A -> B C D") and a valuation function', () => {
+      r = cfg.rule('A -> B C D', (b, c, d) => b + c + d);
+      expect(cfg.length).toBe(1);
+      expect(cfg[0]).toBe(r);
+      expect(r.lhs).toEqual(Sym('A'));
+      expect(r.length).toBe(3);
+      expect(r.evaluate(['1', '2', '3'])).toBe('123');
+    });
+
+    it('fails if a Sym is the first and only argument', () => {
+      let f = () => cfg.rule(Sym('A'));
+      expect(f).toThrowError();
+    });
+
+    it('fails if a Sym is the first arg and a non-array is the second', () => {
+      let f = () => cfg.rule(Sym('A'), 'not an array');
+      expect(f).toThrowError();
+    });
+
+    it('ignores the "valuation function" if it is\'t actually a function', () => {
+      r = cfg.rule('A -> B', 'spaghettios');
+      expect(r.evaluate('something')).toBeNull();
+    });
+
   });
 
   describe('getSymbols()', () => {
