@@ -82,6 +82,19 @@ describe('parser', () => {
       });
     });
 
+    it('does not attempt to insert item beyond number of states', () => {
+      let s = Sym('S')
+        , n = Sym('N')
+        , v = Sym('V')
+        , rules = [
+          Rule(s, [n, v]),
+          Rule(n, [/\w+/]),
+          Rule(v, [/\w+/])
+        ];
+      f = () => earley('hello there'.split(' '), rules);
+      expect(f).not.toThrow();
+    });
+
   });
 
   describe('dfs()', () => {
