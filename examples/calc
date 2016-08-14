@@ -15,26 +15,26 @@ const group   = new Sym('group');
 let   gram    = new CFG();
 
 // sum
-gram.rule(Rule(sum    , [sum, '+', prod]      , (x, _, y) => x + y)),
-gram.rule(Rule(sum    , [sum, '-', prod]      , (x, _, y) => x - y)),
-gram.rule(Rule(sum    , [prod]                , (x) => x)),
+gram.rule(Rule(sum    , [sum, '+', prod]      , (x, _, y) => x + y))
+gram.rule(Rule(sum    , [sum, '-', prod]      , (x, _, y) => x - y))
+gram.rule(Rule(sum    , [prod]                , (x) => x))
 
 // product
-gram.rule(Rule(prod   , [prod, '*', exp]      , (x, _, y) => x * y)),
-gram.rule(Rule(prod   , [prod, '/', exp]      , (x, _, y) => x / y)),
-gram.rule(Rule(prod   , [exp, '*', prod]      , (x, _, y) => x * y)),
-gram.rule(Rule(prod   , [exp, '/', prod]      , (x, _, y) => x / y)),
-gram.rule(Rule(prod   , [factor, group]       , (x, y) => x * y)),
-gram.rule(Rule(prod   , [group, group]        , (x, y) => x * y)),
-gram.rule(Rule(prod   , [group, factor]       , (x, y) => x * y)),
-gram.rule(Rule(prod   , [group]               , (x) => x)),
+gram.rule(Rule(prod   , [prod, '*', exp]      , (x, _, y) => x * y))
+gram.rule(Rule(prod   , [prod, '/', exp]      , (x, _, y) => x / y))
+gram.rule(Rule(prod   , [exp, '*', prod]      , (x, _, y) => x * y))
+gram.rule(Rule(prod   , [exp, '/', prod]      , (x, _, y) => x / y))
+gram.rule(Rule(prod   , [factor, group]       , (x, y) => x * y))
+gram.rule(Rule(prod   , [group, group]        , (x, y) => x * y))
+gram.rule(Rule(prod   , [group, factor]       , (x, y) => x * y))
+gram.rule(Rule(prod   , [group]               , (x) => x))
 
-gram.rule(Rule(group  , ['(', sum, ')']       , (_, x) => x)),
-gram.rule(Rule(group  , [exp]                 , (x) => x)),
+gram.rule(Rule(group  , ['(', sum, ')']       , (_, x) => x))
+gram.rule(Rule(group  , [exp]                 , (x) => x))
 
 // exponent
-gram.rule(Rule(exp    , [group, '^', group]   , (x, _, y) => Math.pow(x, y))),
-gram.rule(Rule(exp    , [factor]              , (x) => x)),
+gram.rule(Rule(exp    , [group, '^', group]   , (x, _, y) => Math.pow(x, y)))
+gram.rule(Rule(exp    , [factor]              , (x) => x))
 
 // factor
 gram.rule(Rule(factor , [/\d+/]               , (n) => parseFloat(n)))
